@@ -1,0 +1,1992 @@
+{
+  "name": "1. Application Form and Resume Screening",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "4e494b97-7960-4831-a503-5212081debc7",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        2200
+      ],
+      "id": "391392db-a49d-4276-928a-3b5f8c8dd345",
+      "name": "Webhook VAPI",
+      "webhookId": "4e494b97-7960-4831-a503-5212081debc7"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=# AI Voice HR Assessment System Prompt - Automation Project Manager\n\nYou are an expert HR assessor for Project Manager - Automation Projects positions at Growwstacks. Your task is to evaluate candidate responses from a voice AI call transcript and provide detailed scoring for 10 HR and behavioral questions.\n\n## Scoring Instructions:\n- **Scale**: 1-10 points per question\n- **Total possible**: 100 points\n- **Voice considerations**: Account for conversational tone, natural speech patterns, and authenticity\n\n## Scoring Scale:\n- **1-3**: Needs improvement (vague, irrelevant, or concerning responses)\n- **4-6**: Meets expectations (adequate but basic responses)\n- **7-8**: Strong candidate (well-articulated, relevant, shows good thinking)\n- **9-10**: Excellent candidate (exceptional insight, leadership qualities, perfect fit)\n\n## Selection Criteria:\n- **Score ≥ 70**: SELECT CANDIDATE\n- **Score < 70**: REJECT CANDIDATE\n\n## Question-by-Question Assessment Criteria:\n\n### **Question 1: School Background**\n**What to evaluate:**\n- Communication skills and storytelling ability\n- Learning mindset and adaptability shown early\n- Key experiences that shaped character\n- Leadership or problem-solving examples from school\n\n**Score 9-10:** Compelling story with specific examples of leadership, problem-solving, or growth\n**Score 7-8:** Clear communication with some meaningful experiences mentioned\n**Score 4-6:** Basic response covering education but lacking depth or examples\n**Score 1-3:** Vague, irrelevant, or shows poor communication skills\n\n### **Question 2: Highest Qualification**\n**What to evaluate:**\n- Relevance to project management or technology\n- Thoughtful career decision-making\n- Continuous learning mindset\n- Technical foundation for automation projects\n\n**Score 9-10:** Highly relevant qualification with clear strategic thinking behind choice\n**Score 7-8:** Good educational background with reasonable explanation\n**Score 4-6:** Adequate qualification but weak reasoning for choice\n**Score 1-3:** Irrelevant qualification or no clear thought process\n\n### **Question 3: Why Growwstacks?**\n**What to evaluate:**\n- Research about the company and role\n- Genuine interest vs generic responses\n- Alignment with automation/technology focus\n- Understanding of growth opportunities\n\n**Score 9-10:** Deep research, specific reasons, clear alignment with company mission\n**Score 7-8:** Good understanding of company, relevant motivations\n**Score 4-6:** Basic interest but generic reasons\n**Score 1-3:** No research, purely generic response\n\n### **Question 4: Handling Challenges**\n**What to evaluate:**\n- Problem-solving methodology\n- Resilience and persistence\n- Specific examples with measurable outcomes\n- Learning from difficulties\n\n**Score 9-10:** Excellent specific example with clear methodology and great outcome\n**Score 7-8:** Good example showing systematic problem-solving approach\n**Score 4-6:** Basic example but lacking detail or clear process\n**Score 1-3:** Vague response or poor problem-solving approach\n\n### **Question 5: Team Collaboration**\n**What to evaluate:**\n- Teamwork and collaboration skills\n- Leadership qualities (formal or informal)\n- Communication and conflict resolution\n- Role clarity and contribution to team success\n\n**Score 9-10:** Outstanding example showing leadership and measurable team impact\n**Score 7-8:** Strong teamwork example with clear role and contributions\n**Score 4-6:** Basic teamwork story but lacking depth\n**Score 1-3:** Poor example or shows inability to work effectively in teams\n\n### **Question 6: Time Management**\n**What to evaluate:**\n- Organizational skills and prioritization\n- Use of tools and methodologies\n- Handling multiple deadlines (crucial for PM role)\n- Efficiency and productivity approaches\n\n**Score 9-10:** Sophisticated time management system with specific tools and great results\n**Score 7-8:** Good organizational approach with practical methods\n**Score 4-6:** Basic time management but not systematic\n**Score 1-3:** Poor or no clear time management strategy\n\n### **Question 7: Pride in Work**\n**What to evaluate:**\n- Quality standards and attention to detail\n- Impact and outcomes achieved\n- Passion and ownership mentality\n- Relevance to project management or automation\n\n**Score 9-10:** Exceptional achievement with significant business impact\n**Score 7-8:** Strong accomplishment showing good project outcomes\n**Score 4-6:** Decent achievement but limited impact or detail\n**Score 1-3:** Weak example or shows lack of ownership\n\n### **Question 8: Staying Positive**\n**What to evaluate:**\n- Stress management and resilience\n- Emotional intelligence and self-awareness\n- Practical coping strategies\n- Leadership during difficult times\n\n**Score 9-10:** Excellent emotional intelligence with specific stress management strategies\n**Score 7-8:** Good resilience with practical approaches to staying positive\n**Score 4-6:** Basic understanding but limited strategies\n**Score 1-3:** Poor stress management or concerning responses\n\n### **Question 9: Learning New Skills**\n**What to evaluate:**\n- Adaptability and growth mindset\n- Learning methodology and speed\n- Application of new knowledge\n- Relevance to technology/automation learning\n\n**Score 9-10:** Exceptional learning example showing rapid skill acquisition and application\n**Score 7-8:** Good learning approach with specific methodology\n**Score 4-6:** Basic learning example but lacking systematic approach\n**Score 1-3:** Poor learning ability or weak example\n\n### **Question 10: Career Growth**\n**What to evaluate:**\n- Career vision and strategic thinking\n- Alignment with Growwstacks growth opportunities\n- Ambition balanced with realism\n- Long-term commitment potential\n\n**Score 9-10:** Clear, ambitious but realistic career plan perfectly aligned with role\n**Score 7-8:** Good career vision with reasonable alignment\n**Score 4-6:** Basic career goals but lacking specificity\n**Score 1-3:** Unclear goals or misalignment with role/company\n\n## Voice Transcript Considerations:\n- **Natural Speech**: Value authenticity over perfect articulation\n- **Specific Examples**: Look for concrete stories and measurable outcomes\n- **Passion and Energy**: Assess enthusiasm and genuine interest\n- **Consistency**: Check for alignment across different responses\n\n## Required Output Format:\nRespond ONLY in JSON format:\n\n```json\n{\n  \"total_score\": [number 0-100],\n  \"result\": \"[SELECT CANDIDATE or REJECT CANDIDATE]\",\n  \"reason for result\": \"provide a detailed reasoning\"\n  }\n``\n## Critical Assessment Areas for Automation PM Role:\n- **Technical Aptitude**: Look for technology interest and learning ability\n- **Project Management Mindset**: Systematic thinking, planning, and execution\n- **Problem-Solving**: Specific examples with clear methodology\n- **Communication Skills**: Essential for stakeholder management\n- **Growth Potential**: Alignment with automation industry growth\n- **Cultural Fit**: Collaborative, innovative, and growth-oriented mindset\n\nAnd the transcript should be in proper format with gaps.\n\nNow, please provide the voice call transcript with the candidate's responses to all 10 HR questions for assessment.",
+              "role": "assistant"
+            },
+            {
+              "content": "=Here is the call transcript\n\n {{ $json.body.message.transcript }}",
+              "role": "assistant"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1940,
+        2200
+      ],
+      "id": "a0bc8ed3-65ea-4236-855e-6320bc9c72a5",
+      "name": "Analyzer Agent",
+      "credentials": {
+        "openAiApi": {
+          "id": "PZFtWwDufZVAEh0l",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco",
+          "mode": "list",
+          "cachedResultName": "Job Application Tracking System",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $('Webhook VAPI').item.json.body.message.call.assistantOverrides.variableValues.email }}",
+            "Aptitute Test Score (Out of 10)": "=",
+            "Aptitute Test Result": "=",
+            "Test Result Reason": "=",
+            "AI Voice Interview Transcript": "={{ $('Webhook VAPI').item.json.body.message.transcript }}",
+            "AI Interview Score": "={{ $json.message.content.total_score }}",
+            "AI Voice Interview Result": "={{ $json.message.content.result }}",
+            "AI Voice Interview Result Reason": "={{ $json.message.content['reason for result'] }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Application ID",
+              "displayName": "Application ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Candidate Name",
+              "displayName": "Candidate Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Current Job Title",
+              "displayName": "Current Job Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Highest Education Qualification",
+              "displayName": "Highest Education Qualification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume File Link",
+              "displayName": "Resume File Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job Applied For",
+              "displayName": "Job Applied For",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Application Date",
+              "displayName": "Application Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume Screen Score",
+              "displayName": "Resume Screen Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Screening Result",
+              "displayName": "Screening Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Screening Result Reason",
+              "displayName": "Screening Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aptitute Test Score (Out of 10)",
+              "displayName": "Aptitute Test Score (Out of 10)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aptitute Test Result",
+              "displayName": "Aptitute Test Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Test Result Reason",
+              "displayName": "Test Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Voice Interview Transcript",
+              "displayName": "AI Voice Interview Transcript",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Interview Score",
+              "displayName": "AI Interview Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Voice Interview Result",
+              "displayName": "AI Voice Interview Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Voice Interview Result Reason",
+              "displayName": "AI Voice Interview Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2360,
+        2200
+      ],
+      "id": "5fabb606-1923-443f-a7a4-ebfaf2f01af0",
+      "name": "DB Update",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "iQPDmLrxJRq4d3qv",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('Webhook VAPI').item.json.body.message.call.assistantOverrides.variableValues.email }}",
+        "subject": "Next Steps - Your Application for Project Manager",
+        "bodyContent": "=Dear {{ $('Webhook VAPI').item.json.body.message.call.assistantOverrides.variableValues.name }},\n\nYou are selected for a face to face management round.\n\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2280,
+        2440
+      ],
+      "id": "e730f143-f7b0-48e4-b47a-34b529a7c744",
+      "name": "Selection Email",
+      "webhookId": "ebcde35c-289c-40da-8dd1-503e177f9cdc",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "tmhIX23SSTwXXRyG",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('Webhook VAPI').item.json.body.message.call.assistantOverrides.variableValues.email }}",
+        "subject": "Update on Your Application for Project Manager",
+        "bodyContent": "=Dear {{ $('Webhook VAPI').item.json.body.message.call.assistantOverrides.variableValues.name }},\n\nSorry you could pass through the telephonic round.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2280,
+        2660
+      ],
+      "id": "ae266e83-3998-488d-ab6d-85a35392e2b4",
+      "name": "Rejection Email",
+      "webhookId": "ebcde35c-289c-40da-8dd1-503e177f9cdc",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "tmhIX23SSTwXXRyG",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# VAPI Voice Assistant HR",
+        "height": 880,
+        "width": 1680,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1260,
+        2000
+      ],
+      "typeVersion": 1,
+      "id": "a2220018-3782-4705-92bb-8dad92b6f557",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json['AI Voice Interview Result'] }}",
+                    "rightValue": "SELECT",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "e55e27b0-788e-4bde-a25b-9bde6a6103bc"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Selected"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "033c4efe-cc27-4264-b94e-315e1156e1d5",
+                    "leftValue": "={{ $json['AI Voice Interview Result'] }}",
+                    "rightValue": "REJECT",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Rejected"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1900,
+        2500
+      ],
+      "id": "2d32979c-6796-4cc0-9b15-a29f20d51577",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "formTitle": "Technical Assessment Form - Project Manager",
+        "formDescription": "Answer all the question and also provide your Name, Email for successful submission.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "=Question 1:\nWhat is the first step you take when a client wants to automate their manual invoice processing?"
+            },
+            {
+              "fieldLabel": "=Question 2:\nName three popular RPA tools and which one would you recommend for a small business with limited budget?"
+            },
+            {
+              "fieldLabel": "=Question 3:\nYour automation project is 2 weeks behind schedule due to unexpected integration issues - what's your immediate action?"
+            },
+            {
+              "fieldLabel": "=Question 4:\nHow do you measure ROI for an automation project that saves 40 hours/week of manual work?"
+            },
+            {
+              "fieldLabel": "=Question 5:\nA stakeholder wants to add 5 new processes to automate mid-project without extending timeline - how do you respond?"
+            },
+            {
+              "fieldLabel": "=Question 6:\nWhat's the difference between attended and unattended RPA, and when would you use each?"
+            },
+            {
+              "fieldLabel": "=Question 7:\nYour automation bot fails in production affecting client operations - describe your escalation process in one line."
+            },
+            {
+              "fieldLabel": "=Question 8:\nHow do you handle team resistance when automating processes that might eliminate some manual jobs?"
+            },
+            {
+              "fieldLabel": "=Question 9:\nWhat factors determine whether a process is suitable for automation or not?"
+            },
+            {
+              "fieldLabel": "=Question 10:\nYou have $200K budget for automation project with 6-month timeline - how do you prioritize which processes to automate first?"
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "buttonLabel": "Submit Assessment",
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "We will get back to you with results soon."
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        3340,
+        1640
+      ],
+      "id": "690d1201-495b-4279-980c-0c498edbde09",
+      "name": "Technical Assessment Form",
+      "webhookId": "0ac9e83e-7317-4ec9-b1b1-5a3dc1cb92fe"
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('Technical Assessment Form').item.json.Email }}",
+        "subject": "Update on Your Application for Project Manager",
+        "bodyContent": "=Dear {{ $('Technical Assessment Form').item.json.Name }},\n\nThank you for taking the time to complete the aptitude assessment for the Project Manger position at GrowwStacks Automation Solutions.\n\nAfter careful evaluation of your test results, we have decided not to move forward with your application at this time. While we appreciate your interest and effort, we are looking for candidates whose technical skills more closely align with our current requirements.\n\nWe encourage you to continue developing your Project Manager skills and consider applying for future opportunities that may be a better match for your experience level.\n\nWe will keep your information on file and may reach out if suitable positions become available in the future.\n\nThank you again for your interest in GrowwStacks Automation Solutions. We wish you success in your career journey.\n\nBest regards,\nHR Team",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        3920,
+        2240
+      ],
+      "id": "ce67e71a-3875-4c17-891c-52b941476d56",
+      "name": "Rejection Email1",
+      "webhookId": "ebcde35c-289c-40da-8dd1-503e177f9cdc",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "tmhIX23SSTwXXRyG",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('Technical Assessment Form').item.json.Email }}",
+        "subject": "Next Steps - Your Application for Project Manager",
+        "bodyContent": "=Dear {{ $('Technical Assessment Form').item.json.Name }}\n\nCongratulations! We're pleased to inform you that you have successfully cleared the aptitude assessment for the Project Manager position at GrowwStacks Automation Solutions.\n\nYour technical knowledge and problem-solving skills demonstrate a strong fit for our team, and we're excited to move forward with the next step in our hiring process.\n\nNext Round: Telephonic Interview\nScheduled Time: In approximately 2 hours from now\nInterview Mode: You will receive a call from our AI HR Assistant\n\nImportant Instructions:\n\nPlease ensure you're available to take the call\nHave a quiet environment ready for the conversation\n\nKeep your resume handy for reference\n\nThe interview will focus on your experience and technical expertise\n\nOur AI HR Assistant will conduct a structured interview to better understand your background and assess your suitability for the role. The call should take approximately 20-30 minutes.\n\nIf you have any urgent concerns or are unable to take the call at the scheduled time, please reply to this email immediately.\n\nWe look forward to speaking with you soon!\n\nBest regards,\nHR Team",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        3920,
+        1880
+      ],
+      "id": "f026aa9f-acb9-45be-a212-f087884cf577",
+      "name": "Selection Email1",
+      "webhookId": "ebcde35c-289c-40da-8dd1-503e177f9cdc",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "tmhIX23SSTwXXRyG",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.vapi.ai/call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer ef482ac0-5873-4162-b379-a4f6a5dd8a02"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"assistantId\": \"fa2355e6-556d-466e-a36a-53ea97be5ee3\",\n  \"phoneNumberId\": \"7bf7b1c1-a68d-45a7-826c-0ab67baec65a\",\n  \"phoneNumber\": {\n    \"twilioAccountSid\": \"AC57fa7e3ee992c752f9aa84819f8f8f3f\",\n    \"twilioPhoneNumber\": \"+1 (832) 786-2941\"\n  },\n  \"assistantOverrides\": {\n    \"variableValues\": {\n      \"name\": \"{{ $('Technical Assessment Form').item.json.Name }}\",\n      \"email\": \"{{ $('Google Sheets2').item.json.Email }}\"\n    }\n  },\n  \"customer\": {\n    \"number\": \"+917354708111\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4380,
+        1880
+      ],
+      "id": "853dc2f2-63de-4a2e-bbe7-2053f76c0c16",
+      "name": "VAPI Calling Agent"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=# AI Aptitude Assessment System Prompt\n\nYou are an expert technical assessor for Project Manager positions. Your task is to evaluate candidate responses to 10 aptitude questions and provide a binary scoring system.\n\n## Scoring Instructions:\n- **1 point**: Answer demonstrates correct understanding and covers key concepts\n- **0 points**: Answer is incorrect, incomplete, or shows lack of understanding\n- **No partial scoring**: Only 0 or 1 points per question\n- **Total possible**: 10 points\n\n## Selection Criteria:\n- **Score ≥ 7**: SELECT CANDIDATE\n- **Score < 7**: REJECT CANDIDATE\n\n## Reference Answers (Use these to evaluate candidate responses):\n\nQuestion 1:\nWhat is the first step you take when a client wants to automate their manual invoice processing?\nExpected Answer Type: Process identification/assessment approach\n\nQuestion 2:\nName three popular RPA tools and which one would you recommend for a small business with limited budget?\nExpected Answer Type: Tool names + recommendation with reason\n\nQuestion 3:\nYour automation project is 2 weeks behind schedule due to unexpected integration issues - what's your immediate action?\nExpected Answer Type: Crisis management approach\n\nQuestion 4:\nHow do you measure ROI for an automation project that saves 40 hours/week of manual work?\nExpected Answer Type: ROI calculation method\n\nQuestion 5:\nA stakeholder wants to add 5 new processes to automate mid-project without extending timeline - how do you respond?\nExpected Answer Type: Scope management response\n\nQuestion 6:\nWhat's the difference between attended and unattended RPA, and when would you use each?\nExpected Answer Type: Definition + use case scenarios\n\nQuestion 7:\nYour automation bot fails in production affecting client operations - describe your escalation process in one line.\nExpected Answer Type: Incident management workflow\n\nQuestion 8:\nHow do you handle team resistance when automating processes that might eliminate some manual jobs?\nExpected Answer Type: Change management approach\n\nQuestion 9:\nWhat factors determine whether a process is suitable for automation or not?\nExpected Answer Type: Process evaluation criteria\n\nQuestion 10:\nYou have $200K budget for automation project with 6-month timeline - how do you prioritize which processes to automate first?\nExpected Answer Type: Prioritization methodology\n\n## Assessment Process:\n1. Read the candidate's combined text containing all 10 answers\n2. Evaluate each answer against the reference answers above\n3. Award 1 point if the answer demonstrates correct understanding, 0 if not\n4. Calculate total score out of 10\n5. Apply selection criteria (≥7 = SELECT, <7 = REJECT)\n6. Provide detailed reasoning\n\n## Required Output Format:\nRespond ONLY in JSON format:\n\n```json\n{\n  \"score\": [number 0-10],\n  \"result\": \"[SELECT CANDIDATE or REJECT CANDIDATE]\", \n  \"reason\": \"[Detailed breakdown: mention specific questions answered correctly/incorrectly, highlight strengths/weaknesses, and justify the selection/rejection decision]\"\n}\n```\n\n## Example Output:\n```json\n{\n  \"score\": 8,\n  \"result\": \"SELECT CANDIDATE\",\n  \"reason\": \"Strong performance with 8/10 correct answers. Correctly answered technical concepts (Q1, Q4, Q6), showed good problem-solving skills (Q3, Q9), and demonstrated business acumen (Q7). Minor gaps in tool knowledge (Q8) and programming specifics (Q2). Overall shows solid automation engineering fundamentals and practical thinking suitable for the role.\"\n}\n```\n\nNow, please provide the candidate's combined text with all 10 question answers for assessment.",
+              "role": "assistant"
+            },
+            {
+              "content": "=Here is the technical test submission from the candidate\n\n{{JSON.stringify($json.data)}}",
+              "role": "assistant"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        3800,
+        1640
+      ],
+      "id": "7f427eed-38d8-4ac6-a878-d47e456d3ffa",
+      "name": "OpenAI2",
+      "credentials": {
+        "openAiApi": {
+          "id": "PZFtWwDufZVAEh0l",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        1640
+      ],
+      "id": "dbc95245-a36f-4335-9927-4d7f1d09cbff",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco",
+          "mode": "list",
+          "cachedResultName": "Job Application Tracking System",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $('Technical Assessment Form').item.json.Email }}",
+            "Aptitute Test Score (Out of 10)": "={{ $json.message.content.score }}",
+            "Aptitute Test Result": "={{ $json.message.content.result }}",
+            "Test Result Reason": "={{ $json.message.content.reason }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Application ID",
+              "displayName": "Application ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Candidate Name",
+              "displayName": "Candidate Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Current Job Title",
+              "displayName": "Current Job Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Highest Education Qualification",
+              "displayName": "Highest Education Qualification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume File Link",
+              "displayName": "Resume File Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job Applied For",
+              "displayName": "Job Applied For",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Application Date",
+              "displayName": "Application Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume Screen Score",
+              "displayName": "Resume Screen Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Screening Result",
+              "displayName": "Screening Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Screening Result Reason",
+              "displayName": "Screening Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aptitute Test Score (Out of 10)",
+              "displayName": "Aptitute Test Score (Out of 10)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aptitute Test Result",
+              "displayName": "Aptitute Test Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Test Result Reason",
+              "displayName": "Test Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Voice Interview Transcript",
+              "displayName": "AI Voice Interview Transcript",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Interview Score",
+              "displayName": "AI Interview Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Voice Interview Result",
+              "displayName": "AI Voice Interview Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Voice Interview Result Reason",
+              "displayName": "AI Voice Interview Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        3380,
+        1880
+      ],
+      "id": "9e5da60f-92b8-49d1-b5a5-85802d736c22",
+      "name": "Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "iQPDmLrxJRq4d3qv",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json[\"Aptitute Test Result\"] }}",
+                    "rightValue": "Select",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "e55e27b0-788e-4bde-a25b-9bde6a6103bc"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Select"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e71baf66-dda5-4039-8726-422a40d9f135",
+                    "leftValue": "={{ $json[\"Aptitute Test Result\"] }}",
+                    "rightValue": "Reject",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Reject"
+            }
+          ]
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        3620,
+        2040
+      ],
+      "id": "4f62af8f-86ee-4c7a-b45a-a6fbce99c30d",
+      "name": "Switch3"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4140,
+        1880
+      ],
+      "id": "6222d7e8-9d1c-4eb5-b7b4-67f540f49283",
+      "name": "Wait1",
+      "webhookId": "bfef5a7b-83c5-4966-bceb-4b9f6aaf3626"
+    },
+    {
+      "parameters": {
+        "content": "# Technical/Aptitude Test",
+        "height": 1100,
+        "width": 1700,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3020,
+        1420
+      ],
+      "typeVersion": 1,
+      "id": "6440ebbc-0692-4f70-9986-284cca9fbe01",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "Resume",
+        "name": "={{ $json.Resume[0].filename }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/folders/1MwPy87RQoQqLq_qCkBtHjkAAupfeCJ9W",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1660,
+        1320
+      ],
+      "id": "72e856ea-1a37-4d70-8e06-39ef2aeda6ab",
+      "name": "Upload Resume on Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0hKcCD5rm5KFAO3k",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "=1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Candidate Name": "={{ $('Job Application Form1').item.json.Name }}",
+            "Email": "={{ $('Job Application Form1').item.json.Email }}",
+            "Phone": "={{ $('Job Application Form1').item.json[\"Phone (with country code)\"] }}",
+            "Current Job Title": "={{ $('Job Application Form1').item.json[\"Current Designation\"] }}",
+            "Highest Education Qualification": "={{ $('Job Application Form1').item.json[\"Highest Qualification\"] }}",
+            "Resume File Link": "={{ $json.webViewLink }}",
+            "Job Applied For": "Project Manager",
+            "Application Date": "={{ $('Job Application Form1').item.json.submittedAt }}",
+            "Application ID": "AP-101"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Application ID",
+              "displayName": "Application ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Candidate Name",
+              "displayName": "Candidate Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Current Job Title",
+              "displayName": "Current Job Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Highest Education Qualification",
+              "displayName": "Highest Education Qualification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume File Link",
+              "displayName": "Resume File Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job Applied For",
+              "displayName": "Job Applied For",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Application Date",
+              "displayName": "Application Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume Screen Score",
+              "displayName": "Resume Screen Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Screening Result",
+              "displayName": "Screening Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Screening Result Reason",
+              "displayName": "Screening Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aptitute Test Score (Out of 10)",
+              "displayName": "Aptitute Test Score (Out of 10)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aptitute Test Result",
+              "displayName": "Aptitute Test Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Test Result Reason",
+              "displayName": "Test Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Voice Interview Transcript",
+              "displayName": "AI Voice Interview Transcript",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Interview Score",
+              "displayName": "AI Interview Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Voice Interview Result",
+              "displayName": "AI Voice Interview Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Voice Interview Result Reason",
+              "displayName": "AI Voice Interview Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1880,
+        1320
+      ],
+      "id": "523a0998-c6f7-4afc-98a8-aa3a5ecbd187",
+      "name": "Create Candidate Record in Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "iQPDmLrxJRq4d3qv",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        1640
+      ],
+      "id": "c3cfbdd1-ac5f-47e9-ab3a-16117d922f1c",
+      "name": "Extract Resume Content"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco",
+          "mode": "list",
+          "cachedResultName": "Job Application Tracking System",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jhcpxtOWqLrVwc98W17l4sn2jaTXIxjb_Ij93KWDQco/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $('Job Application Form1').item.json.Email }}",
+            "Resume Screen Score": "={{ $json.message.content.score }}",
+            "Screening Result": "={{ $json.message.content.result }}",
+            "Screening Result Reason": "={{ $json.message.content.reason }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Application ID",
+              "displayName": "Application ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Candidate Name",
+              "displayName": "Candidate Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Current Job Title",
+              "displayName": "Current Job Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Highest Education Qualification",
+              "displayName": "Highest Education Qualification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume File Link",
+              "displayName": "Resume File Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job Applied For",
+              "displayName": "Job Applied For",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Application Date",
+              "displayName": "Application Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume Screen Score",
+              "displayName": "Resume Screen Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Screening Result",
+              "displayName": "Screening Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Screening Result Reason",
+              "displayName": "Screening Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aptitute Test Score (Out of 10)",
+              "displayName": "Aptitute Test Score (Out of 10)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aptitute Test Result",
+              "displayName": "Aptitute Test Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Test Result Reason",
+              "displayName": "Test Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Voice Interview Transcript",
+              "displayName": "AI Voice Interview Transcript",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Interview Score",
+              "displayName": "AI Interview Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Voice Interview Result",
+              "displayName": "AI Voice Interview Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Voice Interview Result Reason",
+              "displayName": "AI Voice Interview Result Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2320,
+        1640
+      ],
+      "id": "9854fff7-6f11-4a58-bf31-d6500713774f",
+      "name": "Candidate Sheet Update",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "iQPDmLrxJRq4d3qv",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Upload Resume on Drive').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2100,
+        1320
+      ],
+      "id": "89a88b17-e9dc-4e19-b167-475f5fe8b214",
+      "name": "Org Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0hKcCD5rm5KFAO3k",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "=Job Application Form - Project Manager",
+        "formDescription": "Fill this form and our team will contact you soon",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Phone (with country code)",
+              "placeholder": "(with country code)"
+            },
+            {
+              "fieldLabel": "Highest Qualification",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Current Designation",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Resume",
+              "fieldType": "file",
+              "acceptFileTypes": ".pdf",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "buttonLabel": "Submit Application",
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "=Thanks for applying, our team will get back to you shortly via Email.\n\nKeep a close watch"
+            }
+          },
+          "ignoreBots": true
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        1320
+      ],
+      "id": "7cbb0d5a-86d8-4992-bbba-ef4ab6d25e4c",
+      "name": "Job Application Form1",
+      "webhookId": "48cb51a9-6193-4162-b4bf-375dd6e6a681"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cf39354f-dad1-47c1-99c6-f5b4355faee1",
+              "name": "Job Description",
+              "value": "=# PROJECT MANAGER - AUTOMATION PROJECTS\n**Growwstacks**\n\n---\n\n## ABOUT GROWWSTACKS\n\nGrowwstacks is a forward-thinking technology company dedicated to driving digital transformation through innovative automation solutions. We specialize in helping businesses streamline their operations, reduce manual processes, and achieve scalable growth through cutting-edge automation technologies. Our team is passionate about creating efficient, intelligent systems that empower organizations to focus on what matters most.\n\n---\n\n## POSITION OVERVIEW\n\nWe are seeking an experienced **Project Manager** with a strong background in automation projects to join our dynamic team. This role is perfect for a seasoned professional who thrives in managing complex automation initiatives, from robotic process automation (RPA) to workflow optimization and digital transformation projects. You'll be responsible for leading cross-functional teams to deliver automation solutions that drive significant business value for our clients.\n\n**Employment Type:** Full-time  \n**Experience Required:** 5+ years in Project Management  \n**Location:** [Your Location]  \n**Department:** Project Management Office\n\n---\n\n## KEY RESPONSIBILITIES\n\n### **Project Leadership & Planning**\n- Lead end-to-end automation project lifecycles from initiation to deployment and support\n- Develop comprehensive project plans, timelines, and resource allocation strategies\n- Define project scope, objectives, and success criteria in collaboration with stakeholders\n- Manage project budgets ranging from $50K to $500K+ ensuring delivery within financial constraints\n\n### **Automation Project Management**\n- Oversee implementation of RPA solutions, workflow automation, and process optimization projects\n- Collaborate with business analysts to identify automation opportunities and define requirements\n- Coordinate with technical teams on automation tool selection (UiPath, Automation Anywhere, Power Automate, etc.)\n- Manage integration projects involving APIs, databases, and third-party systems\n\n### **Team Coordination & Stakeholder Management**\n- Lead cross-functional teams including developers, business analysts, QA engineers, and solution architects\n- Facilitate regular communication with clients and internal stakeholders through status updates and presentations\n- Conduct risk assessments and develop mitigation strategies for automation projects\n- Ensure quality deliverables through structured testing and validation processes\n\n### **Process & Methodology Implementation**\n- Apply Agile/Scrum methodologies to automation project delivery\n- Establish and maintain project governance frameworks and best practices\n- Create and maintain comprehensive project documentation and knowledge repositories\n- Monitor project KPIs and generate executive-level reporting and dashboards\n\n---\n\n## REQUIRED QUALIFICATIONS\n\n### **Experience & Background**\n- **5+ years** of project management experience with at least **2+ years** focused on automation projects\n- Proven track record of successfully delivering automation/RPA implementations\n- Experience managing projects with budgets of $100K+ and teams of 5-15 members\n- Background in business process analysis and optimization\n\n### **Technical Knowledge**\n- Familiarity with automation platforms (UiPath, Automation Anywhere, Blue Prism, Power Automate)\n- Understanding of software development lifecycle (SDLC) and DevOps practices\n- Knowledge of integration technologies (APIs, databases, web services)\n- Experience with project management tools (JIRA, Azure DevOps, MS Project, Smartsheet)\n\n### **Certifications & Education**\n- Bachelor's degree in Engineering, Computer Science, Business, or related field\n- **PMP, PRINCE2, or equivalent project management certification required**\n- Agile/Scrum certifications (CSM, PSM) preferred\n\n### **Core Competencies**\n- Strong analytical and problem-solving skills\n- Excellent communication and presentation abilities\n- Experience in change management and stakeholder engagement\n- Ability to work in fast-paced, dynamic environments\n\n---\n\n## PREFERRED QUALIFICATIONS\n\n- **Master's degree** in Business Administration, Project Management, or Technology Management\n- **RPA certification** from major vendors (UiPath, Automation Anywhere)\n- Experience with **cloud platforms** (AWS, Azure, GCP) and automation in cloud environments\n- Knowledge of **AI/ML integration** in automation solutions\n- Experience in **digital transformation** initiatives\n- Background in specific industries (BFSI, Healthcare, Manufacturing, Retail)\n- **ITIL Foundation** or similar service management certification\n\n---\n\n## WHAT YOU'LL MANAGE\n\n### **Project Types**\n- Robotic Process Automation (RPA) implementations\n- Workflow and business process automation\n- Document processing and data extraction automation\n- Integration and API development projects\n- Legacy system modernization initiatives\n- Custom automation solution development\n\n### **Technologies & Tools**\n- Automation platforms (UiPath, Power Automate, Zapier)\n- Project management tools (JIRA, Confluence, MS Project)\n- Cloud services and integration platforms\n- Business intelligence and reporting tools\n- Version control and collaboration systems\n\n---\n\n## WHAT WE OFFER\n\n### **Professional Growth**\n- Opportunity to work on cutting-edge automation technologies\n- Access to continuous learning and certification programs\n- Mentorship from industry experts and senior leadership\n- Career advancement opportunities within a growing organization\n\n### **Work Environment**\n- Collaborative and innovative team culture\n- Flexible working arrangements and hybrid work options\n- Modern office space with state-of-the-art technology\n- Access to latest automation tools and platforms\n\n### **Compensation & Benefits**\n- Competitive salary commensurate with experience\n- Performance-based bonuses and incentives\n- Comprehensive health and wellness benefits\n- Professional development budget for certifications and training\n- Employee stock options and profit-sharing opportunities\n\n---\n\n## SUCCESS METRICS\n\nIn this role, your success will be measured by:\n- **Project delivery success rate** (target: 95%+ on-time, on-budget delivery)\n- **Client satisfaction scores** and repeat business generation\n- **Team productivity** and resource utilization optimization\n- **Process improvement** and automation ROI achievement\n- **Stakeholder engagement** and communication effectiveness\n\n---\n\n## APPLICATION PROCESS\n\n**Ready to drive automation transformation with Growwstacks?**\n\nTo apply, please submit:\n1. **Updated resume** highlighting your automation project management experience\n2. **Cover letter** explaining your passion for automation and why you want to join Growwstacks\n3. **Portfolio or case studies** of successful automation projects you've managed\n4. **References** from previous automation project stakeholders\n\n**Email your application to:** careers@growwstacks.com  \n**Subject Line:** Project Manager - Automation Projects Application\n\n---\n\n## NEXT STEPS\n\nOur hiring process includes:\n1. **Application Review** (2-3 business days)\n2. **Initial HR Screening** (30 minutes)\n3. **Technical Interview** with our Automation Team Lead (60 minutes)\n4. **Management Interview** with Project Management Director (45 minutes)\n5. **Final Interview** with Senior Leadership (30 minutes)\n6. **Reference Checks** and offer negotiation\n\n---\n\n*Growwstacks is an equal opportunity employer committed to diversity and inclusion. We welcome applications from all qualified candidates regardless of race, gender, age, religion, sexual orientation, or disability status.*\n\n**Join us in shaping the future of business",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1700,
+        1640
+      ],
+      "id": "3f10a49a-0fbc-4b63-b448-efd3a12a7cec",
+      "name": "Job Description1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json['Screening Result'] }}",
+                    "rightValue": "SELECT",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "e55e27b0-788e-4bde-a25b-9bde6a6103bc"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Select"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e71baf66-dda5-4039-8726-422a40d9f135",
+                    "leftValue": "={{ $json['Screening Result'] }}",
+                    "rightValue": "REJECT",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Reject"
+            }
+          ]
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2340,
+        1380
+      ],
+      "id": "ba6a31dd-d6e5-40a5-886d-9fee4eb21c41",
+      "name": "Switch4"
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('Job Application Form1').item.json.Email }}",
+        "subject": "Update on Your Application for Project Manager",
+        "bodyContent": "=Dear {{ $('Job Application Form1').item.json.Name }},\n\nThank you for taking the time to apply for the Project Manager position at Growwstacks. We appreciate your interest in joining our team.\n\nAfter careful consideration of your application, we have decided to move forward with other candidates whose experience more closely aligns with our current requirements.\n\nWe encourage you to apply for future opportunities that match your skills and experience. We will keep your resume on file for consideration for other suitable positions.\n\nThank you again for your interest in Growwstacks. We wish you the best in your job search.\n\nBest regards,\nHR Team",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        1540
+      ],
+      "id": "e2b75619-af52-4ba9-b2f6-2470ae207867",
+      "name": "Rejection Email2",
+      "webhookId": "ebcde35c-289c-40da-8dd1-503e177f9cdc",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "tmhIX23SSTwXXRyG",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('Job Application Form1').item.json.Email }}",
+        "subject": "Next Steps - Your Application for Project Manager",
+        "bodyContent": "=Dear {{ $('Job Application Form1').item.json.Name }},\n\nThank you for your interest in the Project Manager role at Growwstacks. We're pleased to inform you that your application has been selected to move forward in our hiring process.\n\nYour background and qualifications demonstrate a strong alignment with our requirements, and we're excited to learn more about you.\n\nNext Step: Please complete the aptitude assessment using the link below witin next 24 hours: https://outskill-gef.app.n8n.cloud/form/0ac9e83e-7317-4ec9-b1b1-5a3dc1cb92fe?Email={{ $('Job Application Form1').item.json.Email }}\n\nThe assessment should take approximately 30 minutes to complete. Once finished, our team will review your results and contact you within 1 business days regarding the next steps.\n\nIf you have any questions, please don't hesitate to reach out.\nBest regards,\nHR Team",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        1280
+      ],
+      "id": "11429f88-b35e-4a62-b502-40b92502b6d6",
+      "name": "Selection Email2",
+      "webhookId": "ebcde35c-289c-40da-8dd1-503e177f9cdc",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "tmhIX23SSTwXXRyG",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=# AI Resume-Job Matching System Prompt\n\nYou are an expert HR AI assistant specialized in matching candidate resumes with job descriptions. Your task is to analyze the compatibility between a job posting and a candidate's resume, then provide a comprehensive scoring and decision.\n\n## Instructions:\n\n### 1. Analysis Criteria\nEvaluate the following aspects and assign weighted scores:\n\n**Technical Skills & Qualifications (35%)**\n- Required technical skills, certifications, software proficiency\n- Industry-specific knowledge and expertise\n- Educational background alignment\n\n**Experience & Background (30%)**\n- Years of relevant experience vs. requirements\n- Previous job roles and responsibilities alignment\n- Industry experience relevance\n\n**Soft Skills & Cultural Fit (20%)**\n- Communication skills, leadership, teamwork\n- Problem-solving abilities\n- Cultural alignment indicators\n\n**Additional Qualifications (15%)**\n- Preferred qualifications and nice-to-haves\n- Unique skills or experiences that add value\n- Career progression and growth potential\n\n### 2. Scoring Guidelines\n- **90-100**: Exceptional match - candidate exceeds most requirements\n- **80-89**: Strong match - meets all key requirements with some extras\n- **70-79**: Good match - meets most requirements adequately\n- **60-69**: Fair match - meets some requirements but has gaps\n- **Below 60**: Poor match - significant gaps in key requirements\n\n### 3. Decision Logic\n- **Score ≥ 40**: SELECT CANDIDATE\n- **Score < 40**: REJECT CANDIDATE\n\n### 4. Required Output Format\nRespond ONLY in the following JSON format:\n\n```json\n{\n  \"score\": [number between 0-100],\n  \"result\": \"[SELECT CANDIDATE or REJECT CANDIDATE]\",\n  \"reason\": \"[Detailed explanation of the decision including key strengths/weaknesses, specific skill matches/gaps, and justification for the score]\"\n}\n```\n\n## Input Format:\nYou will receive:\n- **JOB_DESCRIPTION**: [The complete job posting]\n- **CANDIDATE_RESUME**: [The candidate's resume/CV]\n\n## Important Notes:\n- Be objective and thorough in your analysis\n- Consider both explicit requirements and implicit needs\n- Weigh deal-breakers (must-have skills) more heavily\n- Provide specific, actionable reasoning\n- Ensure the score accurately reflects the overall match quality\n- Do not include any text outside the JSON response\n\n## Example Response:\n```json\n{\n  \"score\": 78,\n  \"result\": \"SELECT CANDIDATE\",\n  \"reason\": \"Strong technical skills match with 5+ years Python experience and AWS certifications meeting key requirements. Educational background in Computer Science aligns well. Minor gap in specific industry experience but compensated by strong problem-solving skills and leadership experience from previous roles. Communication skills evident from project management background. Overall solid match with potential for growth.\"\n}\n```\n\nNow, please provide the JOB_DESCRIPTION and CANDIDATE_RESUME for analysis.",
+              "role": "assistant"
+            },
+            {
+              "content": "=Here is the candidate resume content\n\n{{ $('Extract Resume Content').item.json.text }}",
+              "role": "system"
+            },
+            {
+              "content": "=Here is the job description:\n\n {{ $json['Job Description'] }}",
+              "role": "system"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1940,
+        1640
+      ],
+      "id": "f598ba31-3d04-4e47-aa47-1c6fc2db86ca",
+      "name": "Analyzer Agent1",
+      "credentials": {
+        "openAiApi": {
+          "id": "PZFtWwDufZVAEh0l",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Job Application HR Assistant",
+        "height": 800,
+        "width": 1680,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1260,
+        1120
+      ],
+      "typeVersion": 1,
+      "id": "997bfd47-64d9-4745-8e56-4958d084c707",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.vapi.ai/call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer ef482ac0-5873-4162-b379-a4f6a5dd8a02"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"assistantId\": \"fa2355e6-556d-466e-a36a-53ea97be5ee3\",\n  \"phoneNumberId\": \"7bf7b1c1-a68d-45a7-826c-0ab67baec65a\",\n  \"phoneNumber\": {\n    \"twilioAccountSid\": \"AC57fa7e3ee992c752f9aa84819f8f8f3f\",\n    \"twilioPhoneNumber\": \"+1 (832) 786-2941\"\n  },\n  \"assistantOverrides\": {\n    \"variableValues\": {\n      \"name\": \"Kapil\",\n      \"email\": \"kapil.goswami@growwstacks.com\"\n    }\n  },\n  \"customer\": {\n    \"number\": \"+917354708111\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4360,
+        2160
+      ],
+      "id": "191bfd65-c0db-4e1e-a306-53297f6d65cb",
+      "name": "VAPI Calling Agent1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook VAPI": {
+      "main": [
+        [
+          {
+            "node": "Analyzer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyzer Agent": {
+      "main": [
+        [
+          {
+            "node": "DB Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DB Update": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Selection Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Rejection Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Technical Assessment Form": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Selection Email1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "OpenAI2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Switch3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [
+          {
+            "node": "Selection Email1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Rejection Email1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "VAPI Calling Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Resume on Drive": {
+      "main": [
+        [
+          {
+            "node": "Create Candidate Record in Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Candidate Record in Sheet": {
+      "main": [
+        [
+          {
+            "node": "Org Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Resume Content": {
+      "main": [
+        [
+          {
+            "node": "Job Description1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Candidate Sheet Update": {
+      "main": [
+        [
+          {
+            "node": "Switch4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Org Drive": {
+      "main": [
+        [
+          {
+            "node": "Extract Resume Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Job Application Form1": {
+      "main": [
+        [
+          {
+            "node": "Upload Resume on Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Job Description1": {
+      "main": [
+        [
+          {
+            "node": "Analyzer Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch4": {
+      "main": [
+        [
+          {
+            "node": "Selection Email2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Rejection Email2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyzer Agent1": {
+      "main": [
+        [
+          {
+            "node": "Candidate Sheet Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d174209f-d5d4-45df-8fa1-2c2e2ef115f9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5adcf055af070598f43d6403984bb72f646a6684587b890d0694cbc7278091f8"
+  },
+  "id": "gcUV16xnC7brOF8h",
+  "tags": []
+}
